@@ -13,12 +13,9 @@ const WelcomeScreen = ({ }: WelcomeScreenProps) => {
     const [idNumber, setIdNumber] = useState('');
     const [isFocused, setIsFocused] = useState(false);
 
-    // Form validation errors
-    // const [idError, setIdError] = useState('');
-    // const [formValid, setFormValid] = useState(false);
-
     const handleSendCode = () => {
         console.log(`Sending code via ${selectedOption}`);
+        console.log(`id is ${idNumber} \n sent and agreed the policy ${agreedToTerms}`)
         // In a real app, we would navigate to the next screen
     };
 
@@ -29,10 +26,10 @@ const WelcomeScreen = ({ }: WelcomeScreenProps) => {
             <ScrollView className="flex-1 px-6">
                 <View className="items-center mt-10">
                     {/* Header text */}
-                    <Text className="text-2xl font-bold text-center">
+                    <Text className="text-3xl font-black text-center text-blue-950">
                         היי בוריס,
                     </Text>
-                    <Text className="text-2xl font-bold text-center mb-8">
+                    <Text className="text-3xl font-black text-center mb-8 text-blue-950">
                         כיף שחזרת אלינו!
                     </Text>
 
@@ -63,7 +60,7 @@ const WelcomeScreen = ({ }: WelcomeScreenProps) => {
                         />
                     </View>
 
-
+                    <View className='mb-8'></View>
 
                     {/* Terms checkbox */}
                     <Checkbox

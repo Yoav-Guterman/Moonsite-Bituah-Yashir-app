@@ -4,9 +4,9 @@ import { OptionType, SendCodeOptionsProps } from './types';
 
 const SendCodeOptions = ({ selectedOption, onSelectOption }: SendCodeOptionsProps) => {
     const options = [
-        { id: 'email', label: 'Email' },
-        { id: 'whatsapp', label: 'Whatsapp' },
-        { id: 'sms', label: 'SMS' }
+        { id: 'Email', label: 'Email' },
+        { id: 'Whatsapp', label: 'Whatsapp' },
+        { id: 'SMS', label: 'SMS' }
     ];
 
     return (
