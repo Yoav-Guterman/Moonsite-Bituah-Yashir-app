@@ -1,25 +1,24 @@
-import Button from '@/src/components/button/Button';
-import Checkbox from '@/src/components/checkbox/Checkbox';
-import SendCodeOptions from '@/src/components/sendCodeOptions/SendCodeOptions';
-import { OptionType } from '@/src/components/sendCodeOptions/types';
+import Button from '@/components/button/Button';
+import Checkbox from '@/components/checkbox/Checkbox';
+import SendCodeOptions from '@/components/sendCodeOptions/SendCodeOptions';
+import { OptionType } from '@/components/sendCodeOptions/types';
+import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { Image, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
-import { WelcomeScreenProps } from './types';
 
-const WelcomeScreen = ({ }: WelcomeScreenProps) => {
+const WelcomeScreen = () => {
+    const router = useRouter();
     // Form state
     const [agreedToTerms, setAgreedToTerms] = useState(false);
-    const [selectedOption, setSelectedOption] = useState<OptionType>('sms');
+    const [selectedOption, setSelectedOption] = useState<OptionType>('SMS');
     const [idNumber, setIdNumber] = useState('');
     const [isFocused, setIsFocused] = useState(false);
 
     const handleSendCode = () => {
         console.log(`Sending code via ${selectedOption}`);
         console.log(`id is ${idNumber} \n sent and agreed the policy ${agreedToTerms}`)
-        // In a real app, we would navigate to the next screen
+        router.push("/screens/otpScreen/OTPScreen");
     };
-
-
 
     return (
         <SafeAreaView className="flex-1 bg-white">
@@ -57,6 +56,7 @@ const WelcomeScreen = ({ }: WelcomeScreenProps) => {
                             onFocus={() => setIsFocused(true)}
                             onBlur={() => setIsFocused(false)}
                             keyboardType="number-pad"
+                            maxLength={9}
                         />
                     </View>
 

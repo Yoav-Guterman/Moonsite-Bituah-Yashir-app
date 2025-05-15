@@ -1,4 +1,4 @@
-export type OptionType = 'email' | 'whatsapp' | 'sms'
+export type OptionType = 'Email' | 'Whatsapp' | 'SMS'
 
 export interface SendCodeOptionsProps {
     selectedOption: OptionType
