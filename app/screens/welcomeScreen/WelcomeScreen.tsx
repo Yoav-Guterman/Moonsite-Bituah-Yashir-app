@@ -9,12 +9,13 @@ import { Image, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-na
 const WelcomeScreen = () => {
     const router = useRouter();
     // Form state
-    const [agreedToTerms, setAgreedToTerms] = useState(false);
+    const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false);
     const [selectedOption, setSelectedOption] = useState<OptionType>('SMS');
-    const [idNumber, setIdNumber] = useState('');
-    const [isFocused, setIsFocused] = useState(false);
+    const [idNumber, setIdNumber] = useState<string>('');
+    const [isFocused, setIsFocused] = useState<boolean>(false);
 
     const handleSendCode = () => {
+        // Handle button press
         console.log(`Sending code via ${selectedOption}`);
         console.log(`id is ${idNumber} \n sent and agreed the policy ${agreedToTerms}`)
         router.push("/screens/otpScreen/OTPScreen");
