@@ -1,7 +1,7 @@
 import Button from '@/components/button/Button';
-import Checkbox from '@/components/checkbox/Checkbox';
 import SendCodeOptions from '@/components/sendCodeOptions/SendCodeOptions';
 import { OptionType } from '@/components/sendCodeOptions/types';
+import TermsCheckbox from '@/components/termsCheckbox/TermsCheckbox';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { Image, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
@@ -27,10 +27,10 @@ const WelcomeScreen = () => {
             <ScrollView className="flex-1 px-6">
                 <View className="items-center mt-10">
                     {/* Header text */}
-                    <Text className="text-3xl font-black text-center text-blue-950">
+                    <Text className="text-3xl font-black text-center color-primary">
                         היי בוריס,
                     </Text>
-                    <Text className="text-3xl font-black text-center mb-8 text-blue-950">
+                    <Text className="text-3xl font-black text-center mb-8 color-primary">
                         כיף שחזרת אלינו!
                     </Text>
 
@@ -38,18 +38,21 @@ const WelcomeScreen = () => {
                     <View className="w-64 h-64 items-center justify-center">
                         <Image
                             source={require('../../../assets/images/bituh-yashir-image.jpeg')}
-                            style={{ width: 250, height: 250 }}
+                            className='w-64 h-64'
                             resizeMode="contain"
                         />
                     </View>
 
                     {/* passport / id field */}
-                    <View className="w-full mb-4 border-b border-gray-300 mt-12 mb-20">
+                    <View className={`w-full mb-4 border-b mt-12 mb-20 ${isFocused ? 'border-black' : 'border-gray-300'}`}>
                         <Text
-                            className={`absolute ${isFocused || idNumber.length > 0
-                                ? 'text-xs text-gray-500 -top-3'
-                                : 'text-base text-gray-500'
-                                } right-0`}
+                            className={`absolute 
+                                ${isFocused || idNumber.length > 0
+                                    ? 'text-xs -top-3'
+                                    : 'text-base'
+                                } 
+                                ${isFocused ? 'text-black' : 'color-inactive'}
+                                right-0`}
                         >
                             תעודת זהות / דרכון
                         </Text>
@@ -65,14 +68,14 @@ const WelcomeScreen = () => {
                     </View>
 
                     {/* Terms checkbox */}
-                    <Checkbox
-                        label="אישרתי את תנאי השימוש ואת תקנון מועדון ישיר"
+
+                    <TermsCheckbox
                         checked={agreedToTerms}
                         onToggle={() => setAgreedToTerms(!agreedToTerms)}
                     />
 
+                    {/* for extra margin */}
                     <View className='mb-8'></View>
-
 
                     {/* Send code options */}
                     <SendCodeOptions

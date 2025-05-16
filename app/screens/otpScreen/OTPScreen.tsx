@@ -9,8 +9,8 @@ const OTPScreen = () => {
     const [otpCode, setOtpCode] = useState<string>('')
     const [isFocused, setIsFocused] = useState<boolean>(false)
     const [errorMessage, setErrorMessage] = useState<string>('')
-    const [isResendModalVisible, setIsResendModalVisible] = useState(false)
-    const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false)
+    const [isResendModalVisible, setIsResendModalVisible] = useState<boolean>(false)
+    const [isSuccessModalVisible, setIsSuccessModalVisible] = useState<boolean>(false)
 
     const phoneNumber = '058-****465';
 
@@ -48,12 +48,12 @@ const OTPScreen = () => {
                     className="self-end mt-4"
                     onPress={handleBack}
                 >
-                    <Text className="text-4xl text-blue-950">→</Text>
+                    <Text className="text-4xl color-primary">→</Text>
                 </TouchableOpacity>
 
                 {/* Header */}
                 <View className="items-center mt-6">
-                    <Text className="text-2xl font-bold text-center text-blue-950">
+                    <Text className="text-2xl font-bold text-center color-primary">
                         הזינו את הקוד
                     </Text>
 
@@ -69,8 +69,8 @@ const OTPScreen = () => {
                 <View className="w-full mb-4 border-b border-gray-300 mt-20 mb-12">
                     <Text
                         className={`absolute ${isFocused || otpCode.length > 0
-                            ? 'text-xs text-gray-500 -top-3'
-                            : 'text-base text-gray-500'
+                            ? 'text-xs color-inactive -top-3'
+                            : 'text-base color-inactive'
                             } right-0`}
                     >
                         קוד האימות:
@@ -92,7 +92,7 @@ const OTPScreen = () => {
                         לא הגיע?
                     </Text>
                     <TouchableOpacity className='mt-2' onPress={handleResendCode}>
-                        <Text className="text-purple-600 font-semibold">
+                        <Text className="color-link font-semibold">
                             שלחו לי את הקוד בשנית
                         </Text>
                     </TouchableOpacity>
