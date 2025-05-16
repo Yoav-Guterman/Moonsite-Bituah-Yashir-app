@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { Image, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
 
 const WelcomeScreen = () => {
+    // expo router
     const router = useRouter();
     // Form state
     const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false);
@@ -33,6 +34,7 @@ const WelcomeScreen = () => {
                         כיף שחזרת אלינו!
                     </Text>
 
+                    {/* bituh yashir picture */}
                     <View className="w-64 h-64 items-center justify-center">
                         <Image
                             source={require('../../../assets/images/bituh-yashir-image.jpeg')}
@@ -41,10 +43,11 @@ const WelcomeScreen = () => {
                         />
                     </View>
 
-                    <View className="w-full mb-4 border-b border-gray-300 mt-12 mb-12">
+                    {/* passport / id field */}
+                    <View className="w-full mb-4 border-b border-gray-300 mt-12 mb-20">
                         <Text
                             className={`absolute ${isFocused || idNumber.length > 0
-                                ? 'text-xs text-blue-900 -top-3'
+                                ? 'text-xs text-gray-500 -top-3'
                                 : 'text-base text-gray-500'
                                 } right-0`}
                         >
@@ -61,8 +64,6 @@ const WelcomeScreen = () => {
                         />
                     </View>
 
-                    <View className='mb-8'></View>
-
                     {/* Terms checkbox */}
                     <Checkbox
                         label="אישרתי את תנאי השימוש ואת תקנון מועדון ישיר"
@@ -78,7 +79,6 @@ const WelcomeScreen = () => {
                         selectedOption={selectedOption}
                         onSelectOption={setSelectedOption}
                     />
-
                     <View className='mb-8'></View>
 
                     {/* Send code button */}
