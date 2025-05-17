@@ -73,7 +73,10 @@ const WelcomeScreen = () => {
                             keyboardType="number-pad"
                             maxLength={9}
                             accessible={true}
-                            accessibilityLabel={`עריכת תעודת זהות או דרכון ${idNumber ? ` כרגע הוזן המספר ${idNumber}` : ''}`}
+                            accessibilityLabel={`עריכת תעודת זהות או דרכון ${idNumber
+                                ? ` כרגע הוזן: ${idNumber.split('').join(' ')}`
+                                : ''
+                                }`}
                             accessibilityHint='הזן תעודת זהות או דרכון'
                             accessibilityRole='text'
                             returnKeyType='done'

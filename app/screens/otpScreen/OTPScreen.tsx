@@ -100,7 +100,7 @@ const OTPScreen = () => {
                         keyboardType="number-pad"
                         maxLength={6}
                         accessible={true}
-                        accessibilityLabel={`עריכת קוד אימות ${otpCode ? ` כרגע הוזן הקוד ${otpCode}` : ''}`}
+                        accessibilityLabel={`עריכת קוד אימות ${otpCode ? ` כרגע הוזן הקוד ${otpCode.split('').join(' ')}` : ''}`}
                         accessibilityHint='הזן קוד אימות'
                         accessibilityRole='text'
                         returnKeyType='done'
