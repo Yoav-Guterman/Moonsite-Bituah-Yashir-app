@@ -10,10 +10,11 @@ const WelcomeScreen = () => {
     // expo router
     const router = useRouter();
     // Form state
-    const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false);
-    const [selectedOption, setSelectedOption] = useState<OptionType>('SMS');
-    const [idNumber, setIdNumber] = useState<string>('');
-    const [isFocused, setIsFocused] = useState<boolean>(false);
+    const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false)
+    const [selectedOption, setSelectedOption] = useState<OptionType>('SMS')
+    const [idNumber, setIdNumber] = useState<string>('')
+    const [isFocused, setIsFocused] = useState<boolean>(false)
+    const [isInputActive, setIsInputActive] = useState<boolean>(false)
 
     const handleSendCode = () => {
         // Handle button press
@@ -49,7 +50,10 @@ const WelcomeScreen = () => {
                     </View>
 
                     {/* passport / id field */}
-                    <View className={`w-full border-b mt-12 mb-8 ${isFocused ? 'border-black' : 'border-inactive'}`}
+                    <View className={`w-full border-b mt-12 mb-2 
+                    ${isInputActive && idNumber.length === 0 ? 'border-error' :
+                            isFocused ? 'border-black' : 'border-inactive'} 
+                    `}
                     >
 
                         <Text
@@ -58,7 +62,8 @@ const WelcomeScreen = () => {
                                     ? 'text-xs -top-3'
                                     : 'text-base'
                                 } 
-                                ${isFocused ? 'text-black' : 'color-disabled'}
+                                ${isInputActive && idNumber.length === 0 ? 'text-error' :
+                                    isFocused ? 'text-black' : 'color-disabled'}
                                 right-0`}
                             importantForAccessibility="no"
                         >
@@ -68,7 +73,10 @@ const WelcomeScreen = () => {
                             className="w-full py-2 text-right"
                             value={idNumber}
                             onChangeText={(text) => { setIdNumber(text) }}
-                            onFocus={() => setIsFocused(true)}
+                            onFocus={() => {
+                                setIsFocused(true)
+                                setIsInputActive(true)
+                            }}
                             onBlur={() => setIsFocused(false)}
                             keyboardType="number-pad"
                             maxLength={9}
@@ -81,10 +89,17 @@ const WelcomeScreen = () => {
                             accessibilityRole='text'
                             returnKeyType='done'
                         />
+
+                    </View>
+
+                    <View className='mb-4 w-full'>
+                        {isInputActive && idNumber.length === 0 &&
+                            <Text className='text-base text-error w-full text-right'>שדה חובה</Text>
+                        }
+
                     </View>
 
                     {/* Terms checkbox */}
-
                     <TermsCheckbox
                         checked={agreedToTerms}
                         onToggle={() => setAgreedToTerms(!agreedToTerms)}
@@ -95,6 +110,7 @@ const WelcomeScreen = () => {
 
                     {/* Send code options */}
                     <SendCodeOptions
+
                         selectedOption={selectedOption}
                         onSelectOption={setSelectedOption}
                     />
