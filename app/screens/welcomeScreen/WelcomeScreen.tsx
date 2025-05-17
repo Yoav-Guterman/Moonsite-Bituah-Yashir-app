@@ -4,7 +4,7 @@ import { OptionType } from '@/components/sendCodeOptions/types';
 import TermsCheckbox from '@/components/termsCheckbox/TermsCheckbox';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Image, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
+import { AccessibilityInfo, Image, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
 
 const WelcomeScreen = () => {
     // expo router
@@ -19,6 +19,7 @@ const WelcomeScreen = () => {
         // Handle button press
         console.log(`Sending code via ${selectedOption}`);
         console.log(`id is ${idNumber} \n sent and agreed the policy ${agreedToTerms}`)
+        AccessibilityInfo.announceForAccessibility('קוד האימות נשלח, עובר למסך הזנת הקוד');
         router.push("/screens/otpScreen/OTPScreen");
     };
 
@@ -30,7 +31,9 @@ const WelcomeScreen = () => {
                 >
 
                     {/* Header text */}
-                    <Text className="text-3xl font-black text-center color-primary">
+                    <Text className="text-3xl font-black text-center color-primary"
+                        accessibilityRole="header"
+                    >
                         היי בוריס,
                         {'\n'}
                         כיף שחזרת אלינו!
@@ -85,7 +88,7 @@ const WelcomeScreen = () => {
                     />
 
                     {/* for extra margin */}
-                    <View className='mb-16'></View>
+                    <View className='mb-8'></View>
 
                     {/* Send code options */}
                     <SendCodeOptions

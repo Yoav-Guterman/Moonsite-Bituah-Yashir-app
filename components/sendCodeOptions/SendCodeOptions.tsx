@@ -25,7 +25,7 @@ const SendCodeOptions = ({ selectedOption, onSelectOption }: SendCodeOptionsProp
                     <TouchableOpacity
                         key={option.id}
                         onPress={() => onSelectOption(option.id as OptionType)}
-                        className={`px-3 py-1 mx-1 border-b-2 ${selectedOption === option.id ? 'border-primary' : 'border-transparent'}`}
+                        className={`px-3 py-2 mx-1 border-b-2 ${selectedOption === option.id ? 'border-primary' : 'border-transparent'}`}
                         accessible={true}
                         accessibilityRole='radio'
                         accessibilityState={{ checked: selectedOption === option.id }}

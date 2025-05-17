@@ -1,7 +1,7 @@
 import Modal from '@/components/modal/Modal';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { AccessibilityInfo, SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Button from '../../../components/button/Button';
 
 const OTPScreen = () => {
@@ -19,9 +19,11 @@ const OTPScreen = () => {
         console.log('Verifying code:', otpCode)
         if (otpCode === '123456') {
             console.log(`otp code ${otpCode} is correct!`)
+            AccessibilityInfo.announceForAccessibility('הקוד אומת בהצלחה');
             setErrorMessage('')
             setIsSuccessModalVisible(true)
         } else {
+            AccessibilityInfo.announceForAccessibility('הקוד שהזנת שגוי');
             console.log(`otp code ${otpCode} is incorrect`)
             setErrorMessage('הקוד שהזנת שגוי')
         }
@@ -30,6 +32,7 @@ const OTPScreen = () => {
     // Handle resend code
     const handleResendCode = () => {
         console.log('Resending code')
+        AccessibilityInfo.announceForAccessibility('נשלח קוד אימות נוסף');
         setErrorMessage('')
         setOtpCode('')
         setIsResendModalVisible(true)
@@ -37,6 +40,7 @@ const OTPScreen = () => {
 
     // Back button handler
     const handleBack = () => {
+        AccessibilityInfo.announceForAccessibility('חוזר למסך ההזדהות');
         router.back()
     };
 
@@ -45,7 +49,7 @@ const OTPScreen = () => {
             <ScrollView className="flex-1 px-6">
                 {/* Back button */}
                 <TouchableOpacity
-                    className="self-end mt-4"
+                    className="self-end mt-4 pb-4 pl-4"
                     onPress={handleBack}
                     accessible={true}
                     accessibilityRole='button'
@@ -59,13 +63,14 @@ const OTPScreen = () => {
                 <View className="items-center mt-6 "
                 >
                     <Text className="text-2xl font-bold text-center color-primary"
+                        accessibilityRole="header"
+
                     >
                         הזינו את הקוד
                     </Text>
 
-                    <View className='mt-4'></View>
 
-                    <Text className="text-lg text-center mt-2 text-black">
+                    <Text className="text-lg text-center mt-6 text-black">
                         שלחנו לך קוד אימות בן 6 ספרות
                         {'\n'}
                         למספר הטלפון &#x200E;{phoneNumber}&#x200E;
@@ -110,7 +115,7 @@ const OTPScreen = () => {
                         לא הגיע?
                     </Text>
                     <TouchableOpacity
-                        className='mt-2'
+                        className='p-5'
                         onPress={handleResendCode}
                         accessible={true}
                         accessibilityRole='button'
@@ -127,12 +132,8 @@ const OTPScreen = () => {
             {/* OTP code error message */}
             <View className='mt-auto mb-2 justify-center items-center'>
                 {errorMessage &&
-
                     <Text className='text-error'
-                        // this will be read when the code is incorrect
-                        accessibilityRole="alert"
-                        accessible={true}
-                        accessibilityLiveRegion="assertive"
+                    // this will be read when the code is incorrect
                     >{errorMessage}</Text>
                 }
             </View>

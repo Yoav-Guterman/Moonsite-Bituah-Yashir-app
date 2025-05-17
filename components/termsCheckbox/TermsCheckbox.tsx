@@ -5,7 +5,7 @@ import { TermsCheckboxProps } from './types';
 const TermsCheckbox = ({ checked, onToggle }: TermsCheckboxProps) => {
     return (
         <TouchableOpacity style={{ direction: 'rtl' }}
-            className="flex-row items-center my-2 text-right"
+            className="flex-row items-center text-right py-6"
             onPress={onToggle}
             accessible={true}
             accessibilityRole='checkbox'

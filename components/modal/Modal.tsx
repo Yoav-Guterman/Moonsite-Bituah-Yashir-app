@@ -26,7 +26,7 @@ const Modal = ({
                 <View className="bg-white rounded-lg w-4/5 p-6 items-center">
                     {/* Close button */}
                     <TouchableOpacity
-                        className="absolute top-3 right-3"
+                        className="absolute top-3 right-3 pl-8 pb-4"
                         onPress={onClose}
                         accessible={true}
                         accessibilityLabel="סגור"
@@ -38,9 +38,11 @@ const Modal = ({
 
                     {/* Alert icon */}
                     <View className="w-12 h-12 rounded-full border-2 border-disabled items-center justify-center mb-4"
-                        importantForAccessibility="no"
+
                     >
-                        <Text className="text-3xl">{type === 'success' ? '✓' : '!'}</Text>
+                        <Text className="text-3xl"
+                            importantForAccessibility="no"
+                        >{type === 'success' ? '✓' : '!'}</Text>
                     </View>
 
                     {/* Message */}
