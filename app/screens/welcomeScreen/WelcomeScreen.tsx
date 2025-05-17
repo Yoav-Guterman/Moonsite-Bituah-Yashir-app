@@ -55,7 +55,7 @@ const WelcomeScreen = () => {
                                     ? 'text-xs -top-3'
                                     : 'text-base'
                                 } 
-                                ${isFocused ? 'text-black' : 'color-inactive'}
+                                ${isFocused ? 'text-black' : 'color-disabled'}
                                 right-0`}
                             importantForAccessibility="no"
                         >

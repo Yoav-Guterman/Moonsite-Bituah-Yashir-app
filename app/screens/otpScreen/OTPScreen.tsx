@@ -65,19 +65,19 @@ const OTPScreen = () => {
 
                     <View className='mt-4'></View>
 
-                    <Text className="text-base text-center mt-2 text-black">
+                    <Text className="text-lg text-center mt-2 text-black">
                         שלחנו לך קוד אימות בן 6 ספרות
                         {'\n'}
                         למספר הטלפון &#x200E;{phoneNumber}&#x200E;
                     </Text>
                 </View>
 
-                <View className={`w-full border-b mt-20 mb-12 ${isFocused ? 'border-black' : 'border-inactive'} `}>
+                <View className={`w-full border-b mt-20 mb-12 ${isFocused ? 'border-black' : 'border-disabled'} `}>
                     <Text
                         className={`absolute ${isFocused || otpCode.length > 0
                             ? 'text-xs  -top-3'
-                            : 'text-base'}
-                            ${isFocused ? 'text-black' : 'color-inactive'}
+                            : 'text-lg'}
+                            ${isFocused ? 'text-black' : 'color-disabled'}
                             right-0`}
                         importantForAccessibility="no"
                     >
@@ -86,7 +86,10 @@ const OTPScreen = () => {
                     <TextInput
                         className="w-full py-2 text-right"
                         value={otpCode}
-                        onChangeText={(text) => { setOtpCode(text) }}
+                        onChangeText={(text) => {
+                            setOtpCode(text)
+                            setErrorMessage('')
+                        }}
                         onFocus={() => setIsFocused(true)}
                         onBlur={() => setIsFocused(false)}
                         keyboardType="number-pad"
@@ -101,7 +104,9 @@ const OTPScreen = () => {
 
                 {/* Didn't receive code section */}
                 <View className="mt-8 items-center">
-                    <Text className="text-base">
+                    <Text className="text-lg"
+                        importantForAccessibility="no"
+                    >
                         לא הגיע?
                     </Text>
                     <TouchableOpacity
@@ -111,7 +116,7 @@ const OTPScreen = () => {
                         accessibilityRole='button'
                         accessibilityLabel='כפתור שליחת קוד בשנית'
                     >
-                        <Text className="color-link font-semibold">
+                        <Text className="color-link font-semibold text-lg">
                             שלחו לי את הקוד בשנית
                         </Text>
                     </TouchableOpacity>
@@ -122,7 +127,13 @@ const OTPScreen = () => {
             {/* OTP code error message */}
             <View className='mt-auto mb-2 justify-center items-center'>
                 {errorMessage &&
-                    <Text className='text-red-500'>{errorMessage}</Text>
+
+                    <Text className='text-error'
+                        // this will be read when the code is incorrect
+                        accessibilityRole="alert"
+                        accessible={true}
+                        accessibilityLiveRegion="assertive"
+                    >{errorMessage}</Text>
                 }
             </View>
 
@@ -135,6 +146,7 @@ const OTPScreen = () => {
                     label="המשך"
                     onPress={handleContinue}
                     disabled={otpCode.length < 6}
+
                 />
             </View>
 
@@ -159,8 +171,6 @@ const OTPScreen = () => {
                 onButtonPress={() => setIsSuccessModalVisible(false)}
                 accessibilityLabelHint={'לחץ אישור בשביל לחזור לאפליקציה'}
             />
-
-
 
         </SafeAreaView >
     );

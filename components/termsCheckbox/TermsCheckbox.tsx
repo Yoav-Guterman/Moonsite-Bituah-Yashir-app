@@ -10,18 +10,19 @@ const TermsCheckbox = ({ checked, onToggle }: TermsCheckboxProps) => {
             accessible={true}
             accessibilityRole='checkbox'
             accessibilityState={{ checked }}
+
             accessibilityLabel='אישור תנאי השימוש ותקנון מועדון ישיר'
-            accessibilityHint={`${checked ? 'הקש כדי לאשר' : 'הקש כדי לבטל את האישור'}`}
+            accessibilityHint={`${checked ? 'הקש כדי לבטל את האישור' : 'הקש כדי לאשר'}`}
         >
-            <View className={`w-5 h-5 border border-pink-500 rounded mr-4 items-center justify-center ${checked ? 'bg-pink-500' : 'bg-white'}`}
+            <View className={`w-5 h-5 border border-pink-500 rounded mr-2 items-center justify-center ${checked ? 'bg-pink-500' : 'bg-white'}`}
                 importantForAccessibility='no'>
                 {checked && <Text className="text-white text-xs">✓</Text>}
             </View>
 
-            <Text className="text-md"> אישרתי את</Text>
-            <Text className="text-md font-bold color-link"> תנאי השימוש</Text>
-            <Text className="text-md"> ואת</Text>
-            <Text className="text-md font-bold color-link"> תקנון מועדון ישיר</Text>
+            <Text className="text-base"> אישרתי את</Text>
+            <Text className="text-base font-bold color-link"> תנאי השימוש</Text>
+            <Text className="text-base"> ואת</Text>
+            <Text className="text-base font-bold color-link"> תקנון מועדון ישיר</Text>
         </TouchableOpacity>
     );
 };

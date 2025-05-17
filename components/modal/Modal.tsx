@@ -33,18 +33,18 @@ const Modal = ({
                         accessibilityRole="button"
                         accessibilityHint="סגור את החלון"
                     >
-                        <Text className="text-xl">x</Text>
+                        <Text className="text-2xl">x</Text>
                     </TouchableOpacity>
 
                     {/* Alert icon */}
-                    <View className="w-12 h-12 rounded-full border border-gray-400 items-center justify-center mb-4"
+                    <View className="w-12 h-12 rounded-full border-2 border-disabled items-center justify-center mb-4"
                         importantForAccessibility="no"
                     >
-                        <Text className="text-2xl">{type === 'success' ? '✓' : '!'}</Text>
+                        <Text className="text-3xl">{type === 'success' ? '✓' : '!'}</Text>
                     </View>
 
                     {/* Message */}
-                    <Text className="text-lg font-bold mb-6 text-center"
+                    <Text className="text-lg font-bold mb-6 text-center text-primary"
                         accessible={true}
                     >
                         {title}
@@ -52,10 +52,10 @@ const Modal = ({
 
                     {/* Confirm button */}
                     <TouchableOpacity
-                        className="bg-blue-900 py-3 rounded-full mt-auto h-12 px-12 w-full"
+                        className="bg-primary py-2 rounded-full mt-auto h-12 px-12 w-full"
                         onPress={onButtonPress}
                     >
-                        <Text className="text-white font-medium flex-1 text-center"
+                        <Text className="text-white font-medium flex-1 text-center text-lg"
                             accessible={true}
                             accessibilityLabel={buttonText}
                             accessibilityHint={accessibilityLabelHint}
