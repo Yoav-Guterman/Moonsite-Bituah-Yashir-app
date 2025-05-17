@@ -25,7 +25,10 @@ const WelcomeScreen = () => {
     return (
         <SafeAreaView className="flex-1 bg-white">
             <ScrollView className="flex-1 px-6">
-                <View className="items-center mt-10">
+                <View className="items-center mt-10"
+
+                >
+
                     {/* Header text */}
                     <Text className="text-3xl font-black text-center color-primary">
                         היי בוריס,
@@ -64,6 +67,11 @@ const WelcomeScreen = () => {
                             onBlur={() => setIsFocused(false)}
                             keyboardType="number-pad"
                             maxLength={9}
+                            accessible={true}
+                            accessibilityLabel='תעודת זהות או דרכון'
+                            accessibilityHint='הזן תעודת זהות או דרכון'
+                            accessibilityRole='text'
+                            returnKeyType='done'
                         />
                     </View>
 

@@ -11,7 +11,11 @@ const SendCodeOptions = ({ selectedOption, onSelectOption }: SendCodeOptionsProp
 
     return (
         // Change from flex-row to flex-col to stack vertically
-        <View className="flex-col w-full my-3">
+        <View className="flex-col w-full my-3"
+            accessible={true}
+            accessibilityLabel='אפשרויות לשליחת קוד'
+            accessibilityRole='radiogroup'
+        >
             <View>
                 <Text className="color-primary text-right mb-2 self-center">שלחו לי את הקוד ב-</Text>
             </View>
@@ -23,6 +27,10 @@ const SendCodeOptions = ({ selectedOption, onSelectOption }: SendCodeOptionsProp
                         key={option.id}
                         onPress={() => onSelectOption(option.id as OptionType)}
                         className={`px-3 py-1 mx-1 border-b-2 ${selectedOption === option.id ? 'border-blue-950' : 'border-transparent'}`}
+                        accessible={true}
+                        accessibilityRole='radio'
+                        accessibilityState={{ checked: selectedOption === option.id }}
+                        accessibilityLabel={`שלח קוד ב${option.label}`}
                     >
                         <Text className={`color-primary ${selectedOption === option.id ? ' font-bold' : ''}`}>
                             {option.label}
