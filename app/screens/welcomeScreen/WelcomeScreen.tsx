@@ -1,52 +1,58 @@
-import Button from '@/src/components/button/Button';
-import Checkbox from '@/src/components/checkbox/Checkbox';
-import SendCodeOptions from '@/src/components/sendCodeOptions/SendCodeOptions';
-import { OptionType } from '@/src/components/sendCodeOptions/types';
+import Button from '@/components/button/Button';
+import SendCodeOptions from '@/components/sendCodeOptions/SendCodeOptions';
+import { OptionType } from '@/components/sendCodeOptions/types';
+import TermsCheckbox from '@/components/termsCheckbox/TermsCheckbox';
+import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { Image, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
-import { WelcomeScreenProps } from './types';
 
-const WelcomeScreen = ({ }: WelcomeScreenProps) => {
+const WelcomeScreen = () => {
+    // expo router
+    const router = useRouter();
     // Form state
-    const [agreedToTerms, setAgreedToTerms] = useState(false);
-    const [selectedOption, setSelectedOption] = useState<OptionType>('sms');
-    const [idNumber, setIdNumber] = useState('');
-    const [isFocused, setIsFocused] = useState(false);
+    const [agreedToTerms, setAgreedToTerms] = useState<boolean>(false);
+    const [selectedOption, setSelectedOption] = useState<OptionType>('SMS');
+    const [idNumber, setIdNumber] = useState<string>('');
+    const [isFocused, setIsFocused] = useState<boolean>(false);
 
     const handleSendCode = () => {
+        // Handle button press
         console.log(`Sending code via ${selectedOption}`);
         console.log(`id is ${idNumber} \n sent and agreed the policy ${agreedToTerms}`)
-        // In a real app, we would navigate to the next screen
+        router.push("/screens/otpScreen/OTPScreen");
     };
-
-
 
     return (
         <SafeAreaView className="flex-1 bg-white">
             <ScrollView className="flex-1 px-6">
                 <View className="items-center mt-10">
                     {/* Header text */}
-                    <Text className="text-3xl font-black text-center text-blue-950">
+                    <Text className="text-3xl font-black text-center color-primary">
                         היי בוריס,
                     </Text>
-                    <Text className="text-3xl font-black text-center mb-8 text-blue-950">
+                    <Text className="text-3xl font-black text-center mb-8 color-primary">
                         כיף שחזרת אלינו!
                     </Text>
 
+                    {/* bituh yashir picture */}
                     <View className="w-64 h-64 items-center justify-center">
                         <Image
                             source={require('../../../assets/images/bituh-yashir-image.jpeg')}
-                            style={{ width: 250, height: 250 }}
+                            className='w-64 h-64'
                             resizeMode="contain"
                         />
                     </View>
 
-                    <View className="w-full mb-4 border-b border-gray-300 mt-12 mb-12">
+                    {/* passport / id field */}
+                    <View className={`w-full border-b mt-12 mb-8 ${isFocused ? 'border-black' : 'border-inactive'}`}>
                         <Text
-                            className={`absolute ${isFocused || idNumber.length > 0
-                                ? 'text-xs text-blue-900 -top-3'
-                                : 'text-base text-gray-500'
-                                } right-0`}
+                            className={`absolute 
+                                ${isFocused || idNumber.length > 0
+                                    ? 'text-xs -top-3'
+                                    : 'text-base'
+                                } 
+                                ${isFocused ? 'text-black' : 'color-inactive'}
+                                right-0`}
                         >
                             תעודת זהות / דרכון
                         </Text>
@@ -57,20 +63,19 @@ const WelcomeScreen = ({ }: WelcomeScreenProps) => {
                             onFocus={() => setIsFocused(true)}
                             onBlur={() => setIsFocused(false)}
                             keyboardType="number-pad"
+                            maxLength={9}
                         />
                     </View>
 
-                    <View className='mb-8'></View>
-
                     {/* Terms checkbox */}
-                    <Checkbox
-                        label="אישרתי את תנאי השימוש ואת תקנון מועדון ישיר"
+
+                    <TermsCheckbox
                         checked={agreedToTerms}
                         onToggle={() => setAgreedToTerms(!agreedToTerms)}
                     />
 
-                    <View className='mb-8'></View>
-
+                    {/* for extra margin */}
+                    <View className='mb-16'></View>
 
                     {/* Send code options */}
                     <SendCodeOptions
@@ -78,7 +83,9 @@ const WelcomeScreen = ({ }: WelcomeScreenProps) => {
                         onSelectOption={setSelectedOption}
                     />
 
+                    {/* for extra margin */}
                     <View className='mb-8'></View>
+
 
                     {/* Send code button */}
                     <Button
