@@ -32,8 +32,7 @@ const WelcomeScreen = () => {
                     {/* Header text */}
                     <Text className="text-3xl font-black text-center color-primary">
                         היי בוריס,
-                    </Text>
-                    <Text className="text-3xl font-black text-center mb-8 color-primary">
+                        {'\n'}
                         כיף שחזרת אלינו!
                     </Text>
 
@@ -47,7 +46,9 @@ const WelcomeScreen = () => {
                     </View>
 
                     {/* passport / id field */}
-                    <View className={`w-full border-b mt-12 mb-8 ${isFocused ? 'border-black' : 'border-inactive'}`}>
+                    <View className={`w-full border-b mt-12 mb-8 ${isFocused ? 'border-black' : 'border-inactive'}`}
+                    >
+
                         <Text
                             className={`absolute 
                                 ${isFocused || idNumber.length > 0
@@ -56,6 +57,7 @@ const WelcomeScreen = () => {
                                 } 
                                 ${isFocused ? 'text-black' : 'color-inactive'}
                                 right-0`}
+                            importantForAccessibility="no"
                         >
                             תעודת זהות / דרכון
                         </Text>
@@ -68,7 +70,7 @@ const WelcomeScreen = () => {
                             keyboardType="number-pad"
                             maxLength={9}
                             accessible={true}
-                            accessibilityLabel='תעודת זהות או דרכון'
+                            accessibilityLabel={`עריכת תעודת זהות או דרכון ${idNumber ? ` כרגע הוזן המספר ${idNumber}` : ''}`}
                             accessibilityHint='הזן תעודת זהות או דרכון'
                             accessibilityRole='text'
                             returnKeyType='done'
@@ -98,6 +100,7 @@ const WelcomeScreen = () => {
                     {/* Send code button */}
                     <Button
                         label={`שלחו לי את הקוד ב-${selectedOption}`}
+                        accessabilityLabelHint={`שלחו לי את הקוד ב-${selectedOption}`}
                         onPress={handleSendCode}
                         disabled={!agreedToTerms || idNumber.length < 1}
                     />

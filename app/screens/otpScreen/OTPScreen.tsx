@@ -47,13 +47,19 @@ const OTPScreen = () => {
                 <TouchableOpacity
                     className="self-end mt-4"
                     onPress={handleBack}
+                    accessible={true}
+                    accessibilityRole='button'
+                    accessibilityLabel='כפתור ניווט לעמוד הקודם'
+                    accessibilityHint={`הקש כדי לחזור לעמוד הקודם`}
                 >
                     <Text className="text-4xl color-primary">→</Text>
                 </TouchableOpacity>
 
                 {/* Header */}
-                <View className="items-center mt-6">
-                    <Text className="text-2xl font-bold text-center color-primary">
+                <View className="items-center mt-6 "
+                >
+                    <Text className="text-2xl font-bold text-center color-primary"
+                    >
                         הזינו את הקוד
                     </Text>
 
@@ -66,13 +72,14 @@ const OTPScreen = () => {
                     </Text>
                 </View>
 
-                <View className={`w-full mb-4 border-b mt-20 mb-12 ${isFocused ? 'border-black' : 'border-inactive'} `}>
+                <View className={`w-full border-b mt-20 mb-12 ${isFocused ? 'border-black' : 'border-inactive'} `}>
                     <Text
                         className={`absolute ${isFocused || otpCode.length > 0
                             ? 'text-xs  -top-3'
                             : 'text-base'}
                             ${isFocused ? 'text-black' : 'color-inactive'}
                             right-0`}
+                        importantForAccessibility="no"
                     >
                         קוד האימות:
                     </Text>
@@ -84,6 +91,11 @@ const OTPScreen = () => {
                         onBlur={() => setIsFocused(false)}
                         keyboardType="number-pad"
                         maxLength={6}
+                        accessible={true}
+                        accessibilityLabel={`עריכת קוד אימות ${otpCode ? ` כרגע הוזן הקוד ${otpCode}` : ''}`}
+                        accessibilityHint='הזן קוד אימות'
+                        accessibilityRole='text'
+                        returnKeyType='done'
                     />
                 </View>
 
@@ -92,7 +104,13 @@ const OTPScreen = () => {
                     <Text className="text-base">
                         לא הגיע?
                     </Text>
-                    <TouchableOpacity className='mt-2' onPress={handleResendCode}>
+                    <TouchableOpacity
+                        className='mt-2'
+                        onPress={handleResendCode}
+                        accessible={true}
+                        accessibilityRole='button'
+                        accessibilityLabel='כפתור שליחת קוד בשנית'
+                    >
                         <Text className="color-link font-semibold">
                             שלחו לי את הקוד בשנית
                         </Text>
@@ -113,6 +131,7 @@ const OTPScreen = () => {
             {/* Bottom button */}
             <View className="mb-8 px-6">
                 <Button
+                    accessabilityLabelHint={'לחץ כדי להמשיך'}
                     label="המשך"
                     onPress={handleContinue}
                     disabled={otpCode.length < 6}
@@ -127,6 +146,7 @@ const OTPScreen = () => {
                 buttonText={'אישור'}
                 type='alert'
                 onButtonPress={() => setIsResendModalVisible(false)}
+                accessibilityLabelHint={'לחץ כדי לאשר ולעבור למסך הזנת הקוד'}
             />
 
             {/* success OTP modal */}
@@ -137,6 +157,7 @@ const OTPScreen = () => {
                 buttonText={'אישור'}
                 type='success'
                 onButtonPress={() => setIsSuccessModalVisible(false)}
+                accessibilityLabelHint={'לחץ אישור בשביל לחזור לאפליקציה'}
             />
 
 

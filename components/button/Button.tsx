@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { ButtonProps } from './types';
 
-const Button = ({ label, onPress, disabled, ...props }: ButtonProps) => {
+const Button = ({ label, onPress, disabled, accessabilityLabelHint, ...props }: ButtonProps) => {
     return (
         <TouchableOpacity
             className={`w-full py-4 rounded-full ${disabled ? 'bg-gray-400' : 'bg-blue-950'}`}
@@ -12,7 +12,8 @@ const Button = ({ label, onPress, disabled, ...props }: ButtonProps) => {
             accessibilityLabel={label}
             accessibilityRole='button'
             accessibilityState={{ disabled: !!disabled }}
-            accessibilityHint={`הקש כדי ${label}`}
+            accessibilityHint={accessabilityLabelHint}
+
             {...props}
         >
             <Text className="text-white text-center font-medium text-base">
