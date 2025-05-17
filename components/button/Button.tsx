@@ -5,7 +5,7 @@ import { ButtonProps } from './types';
 const Button = ({ label, onPress, disabled, accessabilityLabelHint, ...props }: ButtonProps) => {
     return (
         <TouchableOpacity
-            className={`w-full py-4 rounded-full ${disabled ? 'bg-disabled' : 'bg-blue-950'}`}
+            className={`w-full py-4 rounded-full ${disabled ? 'bg-disabled' : 'bg-primary'}`}
             onPress={onPress}
             disabled={disabled}
             accessible={true}
@@ -13,10 +13,10 @@ const Button = ({ label, onPress, disabled, accessabilityLabelHint, ...props }: 
             accessibilityRole='button'
             accessibilityState={{ disabled: !!disabled }}
             accessibilityHint={accessabilityLabelHint}
-
+            accessibilityLanguage='he'
             {...props}
         >
-            <Text className="text-white text-center font-medium text-base text-lg">
+            <Text className="text-white text-center font-medium text-lg">
                 {label}
 
             </Text>

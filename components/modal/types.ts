@@ -6,5 +6,4 @@ export interface ModalProps {
     type?: 'success' | 'alert',
     buttonText: string,
     onButtonPress?: () => void
-
 }

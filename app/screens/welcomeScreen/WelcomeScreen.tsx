@@ -20,8 +20,8 @@ const WelcomeScreen = () => {
         // Handle button press
         console.log(`Sending code via ${selectedOption}`);
         console.log(`id is ${idNumber} \n sent and agreed the policy ${agreedToTerms}`)
-        AccessibilityInfo.announceForAccessibility('קוד האימות נשלח, עובר למסך הזנת הקוד');
-        router.push("/screens/otpScreen/OTPScreen");
+        AccessibilityInfo.announceForAccessibility('קוד האימות נשלח, עובר למסך הזנת הקוד')
+        router.push("/screens/otpScreen/OTPScreen")
     };
 
     return (
@@ -34,6 +34,8 @@ const WelcomeScreen = () => {
                     {/* Header text */}
                     <Text className="text-3xl font-black text-center color-primary"
                         accessibilityRole="header"
+                        accessibilityLanguage='he'
+                        accessible={true}
                     >
                         היי בוריס,
                         {'\n'}
@@ -88,6 +90,8 @@ const WelcomeScreen = () => {
                             accessibilityHint='הזן תעודת זהות או דרכון'
                             accessibilityRole='text'
                             returnKeyType='done'
+                            accessibilityLanguage='he'
+                            focusable={true}
                         />
 
                     </View>
@@ -110,7 +114,6 @@ const WelcomeScreen = () => {
 
                     {/* Send code options */}
                     <SendCodeOptions
-
                         selectedOption={selectedOption}
                         onSelectOption={setSelectedOption}
                     />

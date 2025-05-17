@@ -18,13 +18,11 @@ const OTPScreen = () => {
     const handleContinue = () => {
         console.log('Verifying code:', otpCode)
         if (otpCode === '123456') {
-            console.log(`otp code ${otpCode} is correct!`)
             AccessibilityInfo.announceForAccessibility('הקוד אומת בהצלחה');
             setErrorMessage('')
             setIsSuccessModalVisible(true)
         } else {
             AccessibilityInfo.announceForAccessibility('הקוד שהזנת שגוי');
-            console.log(`otp code ${otpCode} is incorrect`)
             setErrorMessage('הקוד שהזנת שגוי')
         }
     };
@@ -64,7 +62,6 @@ const OTPScreen = () => {
                 >
                     <Text className="text-2xl font-bold text-center color-primary"
                         accessibilityRole="header"
-
                     >
                         הזינו את הקוד
                     </Text>
@@ -104,6 +101,7 @@ const OTPScreen = () => {
                         accessibilityHint='הזן קוד אימות'
                         accessibilityRole='text'
                         returnKeyType='done'
+                        accessibilityLanguage='he'
                     />
                 </View>
 
@@ -120,6 +118,7 @@ const OTPScreen = () => {
                         accessible={true}
                         accessibilityRole='button'
                         accessibilityLabel='כפתור שליחת קוד בשנית'
+                        accessibilityLanguage='he'
                     >
                         <Text className="color-link font-semibold text-lg">
                             שלחו לי את הקוד בשנית
@@ -137,8 +136,6 @@ const OTPScreen = () => {
                     >{errorMessage}</Text>
                 }
             </View>
-
-            {/* <View className='mt-80'></View> */}
 
             {/* Bottom button */}
             <View className="mb-8 px-6">

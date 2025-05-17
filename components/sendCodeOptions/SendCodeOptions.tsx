@@ -11,7 +11,8 @@ const SendCodeOptions = ({ selectedOption, onSelectOption }: SendCodeOptionsProp
 
     return (
         <View className="flex-col w-full my-3"
-            accessible={true}
+            accessibilityLanguage='he'
+            accessible={false}
             accessibilityLabel='אפשרויות לשליחת קוד'
             accessibilityRole='radiogroup'
         >
@@ -29,7 +30,9 @@ const SendCodeOptions = ({ selectedOption, onSelectOption }: SendCodeOptionsProp
                         accessible={true}
                         accessibilityRole='radio'
                         accessibilityState={{ checked: selectedOption === option.id }}
+                        accessibilityLanguage='he'
                         accessibilityLabel={`שלח קוד ב${option.label}`}
+                        focusable={true}
                     >
                         <Text className={`text-lg color-primary ${selectedOption === option.id ? ' font-bold' : ''}`}>
                             {option.label}
