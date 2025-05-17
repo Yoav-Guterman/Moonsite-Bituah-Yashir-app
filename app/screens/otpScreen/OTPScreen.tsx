@@ -1,7 +1,7 @@
 import Modal from '@/components/modal/Modal';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
-import { SafeAreaView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Button from '../../../components/button/Button';
 
 const OTPScreen = () => {
@@ -41,8 +41,8 @@ const OTPScreen = () => {
     };
 
     return (
-        <SafeAreaView className="flex-1 bg-white">
-            <View className="px-6 flex-1">
+        <SafeAreaView className="flex-1 bg-white ">
+            <ScrollView className="flex-1 px-6">
                 {/* Back button */}
                 <TouchableOpacity
                     className="self-end mt-4"
@@ -66,12 +66,13 @@ const OTPScreen = () => {
                     </Text>
                 </View>
 
-                <View className="w-full mb-4 border-b border-gray-300 mt-20 mb-12">
+                <View className={`w-full mb-4 border-b mt-20 mb-12 ${isFocused ? 'border-black' : 'border-inactive'} `}>
                     <Text
                         className={`absolute ${isFocused || otpCode.length > 0
-                            ? 'text-xs color-inactive -top-3'
-                            : 'text-base color-inactive'
-                            } right-0`}
+                            ? 'text-xs  -top-3'
+                            : 'text-base'}
+                            ${isFocused ? 'text-black' : 'color-inactive'}
+                            right-0`}
                     >
                         קוד האימות:
                     </Text>
@@ -97,22 +98,25 @@ const OTPScreen = () => {
                         </Text>
                     </TouchableOpacity>
                 </View>
+            </ScrollView>
 
-                {/* OTP code error message */}
-                <View className='mt-auto mb-2 justify-center items-center'>
-                    {errorMessage &&
-                        <Text className='text-red-500'>{errorMessage}</Text>
-                    }
-                </View>
 
-                {/* Bottom button */}
-                <View className="mb-8">
-                    <Button
-                        label="המשך"
-                        onPress={handleContinue}
-                        disabled={otpCode.length < 6}
-                    />
-                </View>
+            {/* OTP code error message */}
+            <View className='mt-auto mb-2 justify-center items-center'>
+                {errorMessage &&
+                    <Text className='text-red-500'>{errorMessage}</Text>
+                }
+            </View>
+
+            {/* <View className='mt-80'></View> */}
+
+            {/* Bottom button */}
+            <View className="mb-8 px-6">
+                <Button
+                    label="המשך"
+                    onPress={handleContinue}
+                    disabled={otpCode.length < 6}
+                />
             </View>
 
             {/* resent OTP modal */}
@@ -135,7 +139,9 @@ const OTPScreen = () => {
                 onButtonPress={() => setIsSuccessModalVisible(false)}
             />
 
-        </SafeAreaView>
+
+
+        </SafeAreaView >
     );
 };
 

@@ -44,7 +44,7 @@ const WelcomeScreen = () => {
                     </View>
 
                     {/* passport / id field */}
-                    <View className={`w-full mb-4 border-b mt-12 mb-20 ${isFocused ? 'border-black' : 'border-gray-300'}`}>
+                    <View className={`w-full border-b mt-12 mb-8 ${isFocused ? 'border-black' : 'border-inactive'}`}>
                         <Text
                             className={`absolute 
                                 ${isFocused || idNumber.length > 0
@@ -75,14 +75,17 @@ const WelcomeScreen = () => {
                     />
 
                     {/* for extra margin */}
-                    <View className='mb-8'></View>
+                    <View className='mb-16'></View>
 
                     {/* Send code options */}
                     <SendCodeOptions
                         selectedOption={selectedOption}
                         onSelectOption={setSelectedOption}
                     />
+
+                    {/* for extra margin */}
                     <View className='mb-8'></View>
+
 
                     {/* Send code button */}
                     <Button
