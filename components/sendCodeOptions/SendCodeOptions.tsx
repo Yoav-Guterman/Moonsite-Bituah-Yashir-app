@@ -24,6 +24,7 @@ const SendCodeOptions = ({ selectedOption, onSelectOption }: SendCodeOptionsProp
             <View className="flex-row justify-center">
                 {options.map((option) => (
                     <TouchableOpacity
+                        style={{ direction: 'rtl' }}
                         key={option.id}
                         onPress={() => onSelectOption(option.id as OptionType)}
                         className={`px-3 py-2 mx-1 border-b-2 ${selectedOption === option.id ? 'border-primary' : 'border-transparent'}`}

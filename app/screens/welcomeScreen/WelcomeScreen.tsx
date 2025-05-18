@@ -59,6 +59,7 @@ const WelcomeScreen = () => {
                     >
 
                         <Text
+                            style={{ direction: 'rtl' }}
                             className={`absolute 
                                 ${isFocused || idNumber.length > 0
                                     ? 'text-xs -top-3'

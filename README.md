@@ -1,50 +1,98 @@
-# Welcome to your Expo app 👋
+-- React Native Project - Bituh Yashir Demo --
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This project is a React Native application that focuses on react native basics with accessibility implementation for mobile apps. 
 
-## Get started
+The application consists of two main screens:
+first screen - welcome screen: user identification entry with terms acceptance and otp code option sms/email/whatsapp
 
-1. Install dependencies
+second screen - otp screen: otp code entry with modals for success and resend the otp code.
 
-   ```bash
-   npm install
-   ```
 
-2. Start the app
 
-   ```bash
-   npx expo start
-   ```
+-- Accessibility features implemented --
 
-In the output, you'll find options to open the app in a
+1. Screen Reader Support
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- All interactive elements have appropriate accessibilityLabel, accessibilityRole, and accessibilityHint properties and more.
+- Hebrew language support.
+Screen announcements using AccessibilityInfo.announceForAccessibility().
+- Proper focus management between screens.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+2. Visual Accessibility
 
-## Get a fresh project
+- High contrast colors for better readability
+- Larger font sizes (text-lg, text-2xl, etc.) for better visibility
+- Error messages with appropriate color coding
 
-When you're ready, run:
+3. Touch Target Accessibility
 
-```bash
-npm run reset-project
-```
+- Large touchable areas for buttons with extra padding
+- Proper spacing between interactive elements
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+4. RTL Support
 
-## Learn more
+- Right-to-left layout support for Hebrew using I18nManager.forceRTL(true)
+- Text alignment appropriate for Hebrew
 
-To learn more about developing your project with Expo, look at the following resources:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## Join the community
+-- The application was tested with --
 
-Join our community of developers creating universal apps.
+1. Screen readers (VoiceOver on iOS, TalkBack on Android)
+2. Different device sizes (android and IOS emulator)
+3. Different text size settings
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+-- Testing Results --
+
+1. Android: The application worked well with TalkBack, all elements were properly navigable
+2. iOS: Most functionality worked correctly with VoiceOver, but i encountered an issue with modal focus management when reopening modals.
+3. The application rendered properly on different device sizes 
+4. All text remained readable at different system font sizes * but the bold font in the android made a problem *
+
+
+
+-- Known Limitations -- 
+
+1. Full keyboard focus navigation was not implemented (focus is limited to interactive elements via screen readers)
+2. The iOS modal focus issue requires further refinement
+3. On IOS The application was primarily tested on iphone emulator rather than physical device
+4. I am not sure about the project folder structure. i have seen a few in the internet, so i took inspiration from one that i liked
+
+
+
+-- Why i chose Expo CLI --
+I chose to run the application on Expo CLI instead of React native CLI for a few reasons:
+
+1. Official recommendation from React Native documentation as the preferred way to get started
+2. Easier setup for running and testing on phone / emulator
+3. Rich documentation and community support
+4. Built-in features that simplify development
+
+
+
+-- How to run the application --
+
+1. Clone the repository
+2. Run in the terminal: npm install or yarn install
+3. Run in the terminal: npx expo start
+4. This will start the Expo development server. From there you can:
+- Press i to open in iOS simulator
+- Press a to open in Android emulator
+- Scan the QR code with the * Expo Go app on your device *
+
+
+-- Development Timeline --
+The project was completed (and learned) in stages over a period of a week:
+
+1. In the first days i learned react native and built demo applications with some guides i found online
+2. In wednesday i started building the project setup (structure, tailwind) -about 2 hours-
+
+3. In thursday i built the first page
+-about 3 hours-
+
+4. In friday i built the second page
+-about 6 hours-
+
+5. In saturday i made the accessibility and documentation.
+-about 10 hours-
