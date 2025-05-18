@@ -20,10 +20,14 @@ const TermsCheckbox = ({ checked, onToggle }: TermsCheckboxProps) => {
                 {checked && <Text className="text-white text-xs">✓</Text>}
             </View>
 
-            <Text className="text-base"> אישרתי את</Text>
-            <Text className="text-base font-bold color-link"> תנאי השימוש</Text>
-            <Text className="text-base"> ואת</Text>
-            <Text className="text-base font-bold color-link"> תקנון מועדון ישיר</Text>
+            <View className="flex-1 flex-row flex-wrap">
+                <Text className="text-base">
+                    <Text> אישרתי את</Text>
+                    <Text className="font-bold color-link"> תנאי השימוש</Text>
+                    <Text> ואת</Text>
+                    <Text className="font-bold color-link pr-4 pl-4"> תקנון מועדון ישיר</Text>
+                </Text>
+            </View>
         </TouchableOpacity>
     );
 };
